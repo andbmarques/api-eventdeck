@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const connectDb = () => {
   mongoose
     .connect(
-      `mongodb+srv://andbmarques:252244Aa@cluster0.dywuuru.mongodb.net/?retryWrites=true&w=majority`
+      `mongodb+srv://@cluster0.dywuuru.mongodb.net/?retryWrites=true&w=majority`
     )
     .then(() => {
       console.log("\nDB Connected");
