@@ -1,0 +1,16 @@
+{
+  "name": "api-eventdeck",
+  "version": "1.0.0",
+  "description": "API EventDeck é uma API de gerenciamento de eventos desenvolvido como um projeto educacional em Node.js, usando o framework Express para o backend e o banco de dados MongoDB. Ele permite que você crie e gerencie eventos com facilidade, tudo em um só lugar.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "Anderson B. Marques",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
