@@ -1,5 +1,5 @@
-const checkLenght = require("../utils/checkLenght");
-const userService = require("../services/user.service");
+import checkLength from "../utils/checkLength.js";
+import userService from "../services/user.service.js";
 
 const create = async (req, res) => {
   try {
@@ -37,7 +37,7 @@ const findAllUsers = async (req, res) => {
   try {
     const users = await userService.findAll();
 
-    if (checkLenght(users) === 0) {
+    if (checkLength(users) === 0) {
       return res
         .status(404)
         .json({ msg: "Not found: There are no registered users yet." });
@@ -77,13 +77,10 @@ const update = async (req, res) => {
     res.status(200).json({ msg: "User changed successfully!" });
   } catch (error) {
     console.log("\n\x1b[31m[Server Error] " + error.message + "\x1b[0m\n");
-    res.status(500).json({ msg: "Server Error: " + error.message });
+    res
+      .status(500)
+      .json({ msg: "Server Error: " + error ? error.message : "" });
   }
 };
 
-module.exports = {
-  create,
-  findAllUsers,
-  findById,
-  update,
-};
+export default { create, findAllUsers, findById, update };
