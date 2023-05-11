@@ -1,4 +1,4 @@
-const checkLenght = (arr) => {
+const checkLength = (arr) => {
   let count = 0;
   arr.forEach((element) => {
     count++;
@@ -6,4 +6,4 @@ const checkLenght = (arr) => {
   return count;
 };
 
-module.exports = checkLenght;
+export default checkLength;
