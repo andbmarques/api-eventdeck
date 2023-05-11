@@ -6,7 +6,7 @@ const create = async (req, res) => {
     const { name, username, email, role, docId, password } = req.body;
 
     if (!name || !username || !email || !role || !docId || !password) {
-      res
+      return res
         .status(400)
         .json({ msg: "Bad request: Submit all fields for registration" });
     }
@@ -65,7 +65,7 @@ const update = async (req, res) => {
     const { name, username, email, role, docId, password } = req.body;
 
     if (!name && !username && !email && !role && !docId && !password) {
-      res
+      return res
         .status(400)
         .json({ msg: "Bad request: Send at least one field to update." });
     }
