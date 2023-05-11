@@ -6,7 +6,7 @@ const connectDb = () => {
       `mongodb+srv://${process.env.dbName}:${process.env.dbPassword}@cluster0.dywuuru.mongodb.net/?retryWrites=true&w=majority`
     )
     .then(() => {
-      console.log("\nDB Connected");
+      console.log("\n\x1b[32m[MongoDB] DB Connected\x1b[0m");
     })
     .catch((err) => {
       console.log("\n DB Error:" + err);

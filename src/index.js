@@ -17,5 +17,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("\nServer running on PORT:" + PORT);
+  console.log("\n\x1b[34m[server] Server running on PORT: \x1b[0m" + PORT);
 });
