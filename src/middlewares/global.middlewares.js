@@ -6,11 +6,11 @@ const validId = (req, res, next) => {
     const id = req.params.id;
 
     if (id.toString().length !== 24)
-      res.status(400).json({
+      return res.status(400).json({
         msg: "Bad request: The inserted ID must contain exactly 24 characters.",
       });
     else if (!mongoose.Types.ObjectId.isValid(id))
-      res
+      return res
         .status(400)
         .json({ msg: "Bad request: The inserted ID is not valid." });
     else {
@@ -28,7 +28,8 @@ const validUser = async (req, res, next) => {
 
     const user = await userService.findById(id);
 
-    if (!user) res.status(404).json({ msg: "Not found: User not found." });
+    if (!user)
+      return res.status(404).json({ msg: "Not found: User not found." });
 
     req.id = id;
     req.user = user;

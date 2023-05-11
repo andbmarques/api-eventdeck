@@ -5,8 +5,11 @@ const connectDb = require("./database/db"); */
 
 import express from "express";
 import connectDb from "./database/db.js";
-import userRoute from "./routes/user.route.js";
 import { config } from "dotenv";
+
+import userRoute from "./routes/user.route.js";
+import authRoute from "./routes/auth.route.js";
+
 config();
 
 const app = express();
@@ -17,6 +20,7 @@ connectDb();
 
 app.use(express.json());
 app.use("/user", userRoute);
+app.use("/auth", authRoute);
 
 app.get("/", (req, res) => {
   res.status(200).json({ msg: "Hello world" });
