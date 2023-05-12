@@ -9,6 +9,7 @@ import { config } from "dotenv";
 
 import userRoute from "./routes/user.route.js";
 import authRoute from "./routes/auth.route.js";
+import eventsRoute from "./routes/events.route.js";
 
 config();
 
@@ -21,6 +22,7 @@ connectDb();
 app.use(express.json());
 app.use("/user", userRoute);
 app.use("/auth", authRoute);
+app.use("/events", eventsRoute);
 
 app.get("/", (req, res) => {
   res.status(200).json({ msg: "Hello world" });
