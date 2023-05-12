@@ -15,15 +15,13 @@ const create = async (req, res) => {
       title,
       text,
       banner,
-      producer: "645d3ba7ecf3a1a077c896c5",
+      producer: req.userId,
     });
 
     res.status(201).json({ msg: "created" });
   } catch (error) {
     console.log("\n\x1b[31m[Server Error] " + error.message + "\x1b[0m\n");
-    res
-      .status(500)
-      .json({ msg: "Server Error: " + error ? error.message : "" });
+    return res.status(500).json({ msg: "Server Error: " + error.message });
   }
 };
 
@@ -40,7 +38,7 @@ const findAll = async (req, res) => {
     res.status(200).json(events);
   } catch (error) {
     console.log("\n\x1b[31m[Server Error] " + error.message + "\x1b[0m\n");
-    res.status(500).json({ msg: "Server Error: " + error.message });
+    return res.status(500).json({ msg: "Server Error: " + error.message });
   }
 };
 
