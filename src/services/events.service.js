@@ -8,5 +8,7 @@ const findAllService = async (offset, limit) =>
     .limit(limit)
     .populate("producer");
 const countEvents = () => Events.countDocuments();
+const topEventsService = () =>
+  Events.findOne().sort({ _id: -1 }).populate("producer");
 
-export { createService, findAllService, countEvents };
+export { createService, findAllService, countEvents, topEventsService };
