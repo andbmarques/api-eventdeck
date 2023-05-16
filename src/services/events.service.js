@@ -7,14 +7,24 @@ const findAllService = async (offset, limit) =>
     .sort({ _id: -1 })
     .skip(offset)
     .limit(limit)
-    .populate("producer");
+    .populate({ path: "producer", select: "-docId" });
 
 const countEvents = () => Events.countDocuments();
 
 const topEventsService = () =>
-  Events.findOne().sort({ _id: -1 }).populate("producer");
+  Events.findOne()
+    .sort({ _id: -1 })
+    .populate({ path: "producer", select: "-docId" });
 
-const findByIdService = (id) => Events.findById(id).populate("producer");
+const findByIdService = (id) =>
+  Events.findById(id).populate({ path: "producer", select: "-docId" });
+
+const searchByTitleService = (title) =>
+  Events.find({
+    title: { $regex: `${title || ""}`, $options: "i" },
+  })
+    .sort({ _id: -1 })
+    .populate({ path: "producer", select: "-docId" });
 
 export {
   createService,
@@ -22,4 +32,5 @@ export {
   countEvents,
   topEventsService,
   findByIdService,
+  searchByTitleService,
 };
