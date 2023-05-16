@@ -1,8 +1,10 @@
+import mongoose from "mongoose";
 import {
   createService,
   findAllService,
   countEvents,
   topEventsService,
+  findByIdService,
 } from "../services/events.service.js";
 import checkLength from "../utils/checkLength.js";
 
@@ -89,4 +91,19 @@ const topEvents = async (req, res) => {
   }
 };
 
-export { create, findAll, topEvents };
+const findById = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(400).json({ msg: "Bad Request | Invalid ID" });
+
+    const event = await findByIdService(id);
+    return res.status(200).json({ event });
+  } catch (error) {
+    console.log("\n\x1b[31m[Server Error] " + error.message + "\x1b[0m\n");
+    return res.status(500).json({ msg: "Server Error: " + error.message });
+  }
+};
+
+export { create, findAll, topEvents, findById };
