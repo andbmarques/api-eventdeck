@@ -5,6 +5,7 @@ import {
   countEvents,
   topEventsService,
   findByIdService,
+  searchByTitleService,
 } from "../services/events.service.js";
 import checkLength from "../utils/checkLength.js";
 
@@ -106,4 +107,20 @@ const findById = async (req, res) => {
   }
 };
 
-export { create, findAll, topEvents, findById };
+const searchByTitle = async (req, res) => {
+  try {
+    const { title } = req.query;
+    const events = await searchByTitleService(title);
+    if (events.length === 0) {
+      return res
+        .status(400)
+        .json({ msg: "Bad Request | There is no event with this title" });
+    }
+    return res.status(200).json({ events });
+  } catch (error) {
+    console.log("\n\x1b[31m[Server Error] " + error.message + "\x1b[0m\n");
+    return res.status(500).json({ msg: "Server Error: " + error.message });
+  }
+};
+
+export { create, findAll, topEvents, findById, searchByTitle };
