@@ -26,6 +26,11 @@ const searchByTitleService = (title) =>
     .sort({ _id: -1 })
     .populate({ path: "producer", select: "-docId" });
 
+const byUserService = (id) =>
+  Events.find({ producer: id })
+    .sort({ _id: -1 })
+    .populate({ path: "producer", select: "-docId" });
+
 export {
   createService,
   findAllService,
@@ -33,4 +38,5 @@ export {
   topEventsService,
   findByIdService,
   searchByTitleService,
+  byUserService,
 };

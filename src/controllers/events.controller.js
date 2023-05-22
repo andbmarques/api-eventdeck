@@ -6,6 +6,7 @@ import {
   topEventsService,
   findByIdService,
   searchByTitleService,
+  byUserService,
 } from "../services/events.service.js";
 import checkLength from "../utils/checkLength.js";
 
@@ -123,4 +124,15 @@ const searchByTitle = async (req, res) => {
   }
 };
 
-export { create, findAll, topEvents, findById, searchByTitle };
+const byUser = async (req, res) => {
+  try {
+    const id = req.userId;
+    const events = await byUserService(id);
+    return res.status(200).json({ events });
+  } catch (error) {
+    console.log("\n\x1b[31m[Server Error] " + error.message + "\x1b[0m\n");
+    return res.status(500).json({ msg: "Server Error: " + error.message });
+  }
+};
+
+export { create, findAll, topEvents, findById, searchByTitle, byUser };
